@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjoutException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjoutException.Designer.cs">
+      <DependentUpon>AjoutException.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChoixPoules.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     <Compile Include="Settings.cs" />
     <Compile Include="SQLiteDatabase.cs" />
     <Compile Include="Tournoi.cs" />
+    <EmbeddedResource Include="AjoutException.resx">
+      <DependentUpon>AjoutException.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChoixPoules.resx">
       <DependentUpon>ChoixPoules.cs</DependentUpon>
     </EmbeddedResource>
