@@ -62,6 +62,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Equipe.cs" />
+    <Compile Include="GererException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GererException.Designer.cs">
+      <DependentUpon>GererException.cs</DependentUpon>
+    </Compile>
     <Compile Include="Jour.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -91,6 +97,9 @@
     <Compile Include="Tournoi.cs" />
     <EmbeddedResource Include="ChoixPoules.resx">
       <DependentUpon>ChoixPoules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GererException.resx">
+      <DependentUpon>GererException.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

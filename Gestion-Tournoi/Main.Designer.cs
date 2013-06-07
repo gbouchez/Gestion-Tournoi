@@ -323,6 +323,7 @@
             this.bt_editIgnore.TabIndex = 15;
             this.bt_editIgnore.Text = "Gérer les exceptions de rencontres...";
             this.bt_editIgnore.UseVisualStyleBackColor = true;
+            this.bt_editIgnore.Click += new System.EventHandler(this.bt_editIgnore_Click);
             // 
             // Main
             // 

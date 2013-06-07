@@ -295,5 +295,11 @@ namespace Gestion_Tournoi
 
         }
 
+        private void bt_editIgnore_Click(object sender, EventArgs e)
+        {
+            GererException excep = new GererException();
+            excep.ShowDialog();
+        }
+
     }
 }
