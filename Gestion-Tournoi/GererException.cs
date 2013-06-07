@@ -43,5 +43,10 @@ namespace Gestion_Tournoi
         {
             this.Close();
         }
+
+        private void bt_add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
