@@ -38,6 +38,7 @@ namespace Gestion_Tournoi
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
             }
 
         }

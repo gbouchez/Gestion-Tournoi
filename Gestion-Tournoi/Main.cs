@@ -278,19 +278,6 @@ namespace Gestion_Tournoi
                 Dictionary<int, Dictionary<int, int>> poules = tour.getPossiblesPoules();
                 ChoixPoules cp = new ChoixPoules(tour, poules);
                 cp.ShowDialog();
-                tour.setMatchs();
-                SaveFileDialog saveFile = new SaveFileDialog();
-                saveFile.Filter = "Fichier texte|*.txt";
-                saveFile.Title = "Sauvegarder le résumé du tournoi";
-                saveFile.ShowDialog();
-                if (saveFile.FileName != "")
-                {
-                    System.IO.StreamWriter file = new System.IO.StreamWriter(saveFile.FileName);
-
-                    tour.ecrireFichier(file);
-                    
-                    file.Close();
-                }
             }
 
         }

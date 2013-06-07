@@ -32,7 +32,7 @@ namespace Gestion_Tournoi
                 MessageBox.Show("Vous ne pouvez pas ajouter une exception d'une équipe sur elle-même.");
                 return;
             }
-            SQLiteDatabase db = new SQLiteDatabase();
+            this.db = new SQLiteDatabase();
             String query = "SELECT COUNT(*) FROM exception WHERE equipe1_id = "
             + cb_equipe1.SelectedValue.ToString() + " AND equipe2_id = "
             + cb_equipe2.SelectedValue.ToString() + " OR equipe1_id = "
@@ -46,7 +46,7 @@ namespace Gestion_Tournoi
             }
             query = "INSERT INTO exception VALUES (" + cb_equipe1.SelectedValue.ToString()
             + ", " + cb_equipe2.SelectedValue.ToString() + ");";
-            db.ExecuteNonQuery(query);
+            this.db.ExecuteNonQuery(query);
             this.Close();
         }
     }

@@ -29,6 +29,14 @@ namespace Gestion_Tournoi
                 this.Equipes[equ.id] = equ;
             }
 
+            query = "select * from exception";
+            DataTable dataExc = db.GetDataTable(query);
+            foreach (DataRow row in dataExc.Rows)
+            {
+                this.Equipes[Int32.Parse(row["equipe1_id"].ToString())].exceptions.Add(Int32.Parse(row["equipe2_id"].ToString()));
+                this.Equipes[Int32.Parse(row["equipe2_id"].ToString())].exceptions.Add(Int32.Parse(row["equipe1_id"].ToString()));
+            }
+
             query = "select * from personne where equipe_id is null and arbitre = 1";
             DataTable arb = db.GetDataTable(query);
             foreach (DataRow row in arb.Rows)
@@ -118,11 +126,16 @@ namespace Gestion_Tournoi
                 {
                     for (j = i + 1; j < equipes.Length; j++)
                     {
-                        Match mat = new Match(this.Equipes[((KeyValuePair<int, Equipe>)equipes.GetValue(i)).Key], this.Equipes[((KeyValuePair<int, Equipe>)equipes.GetValue(j)).Key]);
-                        this.Equipes[((KeyValuePair<int, Equipe>)equipes.GetValue(i)).Key].matchs.Add(mat);
-                        this.Equipes[((KeyValuePair<int, Equipe>)equipes.GetValue(j)).Key].matchs.Add(mat);
-                        poule.Value.matchs.Add(mat);
-                        this.matchs.Add(mat);
+                        Equipe equ1 = this.Equipes[((KeyValuePair<int, Equipe>)equipes.GetValue(i)).Key];
+                        Equipe equ2 = this.Equipes[((KeyValuePair<int, Equipe>)equipes.GetValue(j)).Key];
+                        if (equ1.peutJouerContre(equ2))
+                        {
+                            Match mat = new Match(equ1, equ2);
+                            equ1.matchs.Add(mat);
+                            equ2.matchs.Add(mat);
+                            poule.Value.matchs.Add(mat);
+                            this.matchs.Add(mat);
+                        }
                     }
                 }
             }
@@ -230,6 +243,32 @@ namespace Gestion_Tournoi
 
                 curDay++;
             }
+        }
+
+        public String getTexteJoueurs()
+        {
+            String text = "";
+            int pouleId = 0;
+            foreach (KeyValuePair<int, Poule> poule in this.Poules)
+            {
+                pouleId++;
+                text += "Poule " + pouleId.ToString()+"\r\n\r\n";
+                foreach (KeyValuePair<int, Equipe> equ in poule.Value.Equipes)
+                {
+                    Equipe equipe = equ.Value;
+                    text += "Equipe " + equipe.id + " : " + equipe.nom + "\r\n";
+                    text += equipe.capitaine.prenom + " " + equipe.capitaine.nom + " (Capitaine)\r\n";
+                    foreach (Personne joueur in equipe.joueurs)
+                    {
+                        if (joueur.id != equipe.capitaine_id)
+                        {
+                            text += joueur.prenom + " " + joueur.nom+"\r\n";
+                        }
+                    }
+                    text += "\r\n";
+                }
+            }
+            return text;
         }
     }
 }

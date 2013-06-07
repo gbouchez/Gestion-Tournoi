@@ -14,6 +14,7 @@ namespace Gestion_Tournoi
         public List<Personne> joueurs = new List<Personne>();
         public Personne capitaine;
         public int capitaine_id;
+        public List<int> exceptions = new List<int>();
 
         public Equipe(int id, String nom, int capitaine_id)
         {
@@ -34,6 +35,18 @@ namespace Gestion_Tournoi
                         this.capitaine = joueur.Value;
                     }
                 }
+            }
+        }
+
+        public Boolean peutJouerContre(Equipe adv)
+        {
+            if (this.exceptions.Contains(adv.id))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

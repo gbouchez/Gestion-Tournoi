@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bt_delete = new System.Windows.Forms.Button();
             this.bt_add = new System.Windows.Forms.Button();
             this.bt_ok = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -48,7 +47,6 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 25);
             this.dataGridView1.MultiSelect = false;
@@ -56,15 +54,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(240, 142);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // bt_delete
-            // 
-            this.bt_delete.Location = new System.Drawing.Point(12, 173);
-            this.bt_delete.Name = "bt_delete";
-            this.bt_delete.Size = new System.Drawing.Size(243, 28);
-            this.bt_delete.TabIndex = 2;
-            this.bt_delete.Text = "Supprimer l\'exception";
-            this.bt_delete.UseVisualStyleBackColor = true;
             // 
             // bt_add
             // 
@@ -78,7 +67,7 @@
             // 
             // bt_ok
             // 
-            this.bt_ok.Location = new System.Drawing.Point(318, 173);
+            this.bt_ok.Location = new System.Drawing.Point(318, 139);
             this.bt_ok.Name = "bt_ok";
             this.bt_ok.Size = new System.Drawing.Size(72, 28);
             this.bt_ok.TabIndex = 4;
@@ -90,10 +79,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 207);
+            this.ClientSize = new System.Drawing.Size(402, 174);
             this.Controls.Add(this.bt_ok);
             this.Controls.Add(this.bt_add);
-            this.Controls.Add(this.bt_delete);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "GererException";
@@ -109,7 +97,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button bt_delete;
         private System.Windows.Forms.Button bt_add;
         private System.Windows.Forms.Button bt_ok;
     }

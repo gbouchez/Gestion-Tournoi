@@ -45,6 +45,9 @@ namespace Gestion_Tournoi
         {
             this.tour.setPoules((Dictionary<int, int>)this.cb_poules.SelectedValue);
             this.Close();
+            tour.setMatchs();
+            SelectionGeneration winSelect = new SelectionGeneration(tour);
+            winSelect.ShowDialog();
         }
     }
 }
