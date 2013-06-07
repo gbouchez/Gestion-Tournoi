@@ -26,5 +26,10 @@ namespace Gestion_Tournoi
             this.tb_calendrier.Text = tournoi.getTexteCalendrier();
         }
 
+        private void bt_ok_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

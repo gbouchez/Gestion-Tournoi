@@ -34,6 +34,7 @@
             this.tb_arbitres = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_calendrier = new System.Windows.Forms.TextBox();
+            this.bt_ok = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -93,11 +94,22 @@
             this.tb_calendrier.Size = new System.Drawing.Size(479, 134);
             this.tb_calendrier.TabIndex = 5;
             // 
+            // bt_ok
+            // 
+            this.bt_ok.Location = new System.Drawing.Point(205, 322);
+            this.bt_ok.Name = "bt_ok";
+            this.bt_ok.Size = new System.Drawing.Size(75, 23);
+            this.bt_ok.TabIndex = 6;
+            this.bt_ok.Text = "OK";
+            this.bt_ok.UseVisualStyleBackColor = true;
+            this.bt_ok.Click += new System.EventHandler(this.bt_ok_Click);
+            // 
             // Synthese
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 328);
+            this.ClientSize = new System.Drawing.Size(503, 349);
+            this.Controls.Add(this.bt_ok);
             this.Controls.Add(this.tb_calendrier);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tb_arbitres);
@@ -120,5 +132,6 @@
         private System.Windows.Forms.TextBox tb_arbitres;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_calendrier;
+        private System.Windows.Forms.Button bt_ok;
     }
 }

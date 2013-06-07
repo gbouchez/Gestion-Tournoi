@@ -168,81 +168,13 @@ namespace Gestion_Tournoi
                 +"|      Gestion de tournoi       |"
                 +"\n---------------------------------\n");
             file.WriteLine("----- Présentation des équipes : -----\n");
-            foreach (KeyValuePair<int, Equipe> equ in this.Equipes)
-            {
-                Equipe equipe = equ.Value;
-                file.WriteLine("Equipe " + equipe.id + " : " + equipe.nom);
-                file.WriteLine(equipe.capitaine.prenom + " " + equipe.capitaine.nom + " (Capitaine)");
-                foreach (Personne joueur in equipe.joueurs)
-                {
-                    if (joueur.id != equipe.capitaine_id)
-                    {
-                        file.WriteLine(joueur.prenom + " " + joueur.nom);
-                    }
-                }
-                file.WriteLine("");
-            }
+            file.Write(this.getTexteJoueurs());
             file.WriteLine("----- Présentation des arbitres : -----\n");
-            foreach (KeyValuePair<int, Personne> ar in this.Arbitres)
-            {
-                Personne arbi = ar.Value;
-                file.WriteLine(arbi.prenom + " " + arbi.nom);
-            }
+            file.Write(this.getTexteArbitres());
             file.WriteLine("\n\n---------------------------------\n"
                 +"|   Organisation du tournoi     |\n"
                 +"---------------------------------");
-            int semaine = 0;
-            int curDay = 1;
-            int jours = Properties.Settings.Default.jours;
-            List<String> possibleJours = new List<String> { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
-            List<String> joursReels = new List<String>();
-            int nbDiffJours = 0;
-            int i;
-            for (i = 0; i <= 6; i++)
-            {
-                if ((jours & (int)Math.Pow(2, i)) == (int)Math.Pow(2, i))
-                {
-                    nbDiffJours++;
-                    joursReels.Add(possibleJours[i]);
-                }
-            }
-            int numTerrain;
-            int numArbitre;
-            foreach (Jour jour in this.cal)
-            {
-                if ((curDay - 1) % nbDiffJours == 0)
-                {
-                    semaine++;
-                    file.WriteLine("\nSemaine "+semaine.ToString()+" : \n");
-                }
-                file.WriteLine(joursReels[(curDay - 1) % nbDiffJours]);
-                file.WriteLine("12h30:");
-                numTerrain = 0;
-                numArbitre = 0;
-                List<KeyValuePair<int, Personne>> arb = this.Arbitres.ToList();
-                foreach (Match m in jour.horaire1)
-                {
-                    numTerrain++;
-                    file.WriteLine("Terrain " + numTerrain.ToString() + " : " + m.getEquipe1().nom + " VS " + m.getEquipe2().nom+" (Arbitre : "+arb[numArbitre].Value.prenom+ " "+arb[numArbitre].Value.nom+")");
-                    numArbitre++;
-                }
-                if (jour.horaire2.Count > 0)
-                {
-                    file.WriteLine("13h:");
-                    numTerrain = 0;
-                    numArbitre = 0;
-                    foreach (Match m in jour.horaire2)
-                    {
-                        numTerrain++;
-                        file.WriteLine("Terrain " + numTerrain.ToString() + " : " + m.getEquipe1().nom + " VS " + m.getEquipe2().nom + " (Arbitre : " + arb[numArbitre].Value.prenom + " " + arb[numArbitre].Value.nom + ")");
-                        numArbitre++;
-                    }
-                }
-
-                file.WriteLine("");
-
-                curDay++;
-            }
+            file.Write(this.getTexteCalendrier());
         }
 
         public String getTexteJoueurs()
