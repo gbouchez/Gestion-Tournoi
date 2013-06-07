@@ -39,7 +39,7 @@ namespace Gestion_Tournoi
                     query = "select capitaine_id from equipe where id = " + this.id_equipe;
                     capitaineId = Int32.Parse(db.ExecuteScalar(query));
                 }
-                    
+                
                 query = "select * FROM personne WHERE equipe_id is null or equipe_id = 0";
                 if (this.id_equipe != 0)
                 {
