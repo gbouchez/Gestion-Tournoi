@@ -22,6 +22,8 @@ namespace Gestion_Tournoi
         private void Synthese_Load(object sender, EventArgs e)
         {
             this.tb_teams.Text = tournoi.getTexteJoueurs();
+            this.tb_arbitres.Text = tournoi.getTexteArbitres();
+            this.tb_calendrier.Text = tournoi.getTexteCalendrier();
         }
 
     }

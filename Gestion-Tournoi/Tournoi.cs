@@ -270,5 +270,76 @@ namespace Gestion_Tournoi
             }
             return text;
         }
+
+        public String getTexteArbitres()
+        {
+            String text = "";
+            foreach (KeyValuePair<int, Personne> ar in this.Arbitres)
+            {
+                Personne arbi = ar.Value;
+               text += arbi.prenom + " " + arbi.nom +"\r\n";
+            }
+            return text;
+        }
+
+        public String getTexteCalendrier()
+        {
+            String text = "";
+
+            int semaine = 0;
+            int curDay = 1;
+            int jours = Properties.Settings.Default.jours;
+            List<String> possibleJours = new List<String> { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
+            List<String> joursReels = new List<String>();
+            int nbDiffJours = 0;
+            int i;
+            for (i = 0; i <= 6; i++)
+            {
+                if ((jours & (int)Math.Pow(2, i)) == (int)Math.Pow(2, i))
+                {
+                    nbDiffJours++;
+                    joursReels.Add(possibleJours[i]);
+                }
+            }
+            int numTerrain;
+            int numArbitre;
+            foreach (Jour jour in this.cal)
+            {
+                if ((curDay - 1) % nbDiffJours == 0)
+                {
+                    semaine++;
+                    text += "\r\nSemaine " + semaine.ToString() + " : \r\n\r\n";
+                }
+                text += joursReels[(curDay - 1) % nbDiffJours] + "\r\n";
+                text += "12h30:\r\n";
+                numTerrain = 0;
+                numArbitre = 0;
+                List<KeyValuePair<int, Personne>> arb = this.Arbitres.ToList();
+                foreach (Match m in jour.horaire1)
+                {
+                    numTerrain++;
+                    text += "Terrain " + numTerrain.ToString() + " : " + m.getEquipe1().nom + " VS " + m.getEquipe2().nom + " (Arbitre : " + arb[numArbitre].Value.prenom + " " + arb[numArbitre].Value.nom + ")\r\n";
+                    numArbitre++;
+                }
+                if (jour.horaire2.Count > 0)
+                {
+                    text += "13h:\r\n";
+                    numTerrain = 0;
+                    numArbitre = 0;
+                    foreach (Match m in jour.horaire2)
+                    {
+                        numTerrain++;
+                        text += "Terrain " + numTerrain.ToString() + " : " + m.getEquipe1().nom + " VS " + m.getEquipe2().nom + " (Arbitre : " + arb[numArbitre].Value.prenom + " " + arb[numArbitre].Value.nom + ")\r\n";
+                        numArbitre++;
+                    }
+                }
+
+                text += "\r\n";
+
+                curDay++;
+            }
+
+            return text;
+        }
     }
 }
